@@ -48,8 +48,8 @@
             },
             methods: {
                 generateUrl() {
-                    // this.url = window.location.hostname + ':' + window.location.port + '/view.html?' + 't=' + this.title + '&c=' + this.content;
-                    this.url = window.location.hostname + ':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
+                    var dir = '/covertype'; // Directory
+                    this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
                     return this.url;
                     this.isGenerated = true;
                 },
