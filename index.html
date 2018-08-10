@@ -49,7 +49,8 @@
             methods: {
                 generateUrl() {
                     var dir = '/covertype'; // Directory
-                    this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
+                    // this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
+                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content); 
                     return this.url;
                     this.isGenerated = true;
                 },
