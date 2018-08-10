@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random Site : Create</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./dist/copyToClipboard.min.js"></script>
+    <script src="./dist/qrcodejs/jquery.min.js"></script>
+    <script src="./dist/qrcodejs/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <input style="border-style: dashed; padding-left: 10px;" v-model="title" id="title" placeholder="New Untitled Post" />
+        <br>
+        <center>
+            <textarea style="width:80%;" rows="20" v-model="content" id="contentInput" placeholder="Write something you want to share ..."></textarea>
+            <br>
+            <button v-clipboard:copy="generateUrl()" v-clipboard:success="onCopy" v-clipboard:error="onError" v-bind:class="{copySuccess: copySuccess}">{{copyMessage}}</button>
+            <!-- <button @click="generateQr()">{{ qrMessage}}</button> --><br><br>
+            <div id="qrcode"></div>
+            <br>
+        </center>
+    </div>
+    <footer id="footer">
+        Made with &hearts; by Shouvik Mitra, 2018.
+    </footer>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                content: '',
+                url: '',
+                copyMessage: 'COPY URL',
+                copySuccess: false,
+                copyError: false,
+                // qrMessage: 'GENERATE QR',
+                qrGenerated: false,
+            },
+            methods: {
+                generateUrl() {
+                    this.url = window.location.hostname + ':' + window.location.port + '/view.html?' + 't=' + this.title + '&c=' + this.content;
+                    return this.url;
+                    this.isGenerated = true;
+                },
+                onCopy: function (e) {
+                    // alert('You just copied: ' + e.text)
+                    this.copyMessage = "URL COPIED TO CLIPBOARD";
+                    this.copySuccess = true;
+                    setTimeout(() => {
+                        this.copyMessage = "COPY URL";
+                        this.copySuccess = false;
+                    }, 2000);
+                },
+                onError: function (e) {
+                    this.copyError = true;
+                    this.copyMessage = "ERROR GENERATING URL"
+                    setTimeout(() => {
+                        this.copyMessage = "COPY URL";
+                        this.copyError = false;
+                    }, 2000);
+                },
+                generateQr() {
+                    if (this.qrGenerated) {
+                        qrcode.clear(); // clear the code.
+                        qrcode.makeCode(this.generateUrl()); // make another code.
+                        // this.qrMessage = "QR GENERATED SUCCESSFULLY";
+                    } else {
+                        qrcode = new QRCode(document.getElementById("qrcode"), {
+                            text: this.generateUrl(),
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        this.qrGenerated = true;
+                        // this.qrMessage = "QR GENERATED SUCCESSFULLY";
+                    }
+                }
+            },
+            watch: {
+                title: function(){
+                    // this.qrMessage = 'UPDATE QR';
+                    this.copyMessage = 'UPDATE URL';
+                    this.generateQr();
+                },
+                content: function(){
+                    // this.qrMessage = 'UPDATE QR';
+                    this.copyMessage = 'UPDATE URL';
+                    this.generateQr();
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>
