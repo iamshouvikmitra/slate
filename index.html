@@ -12,6 +12,7 @@
     <script src="./dist/copyToClipboard.min.js"></script>
     <script src="./dist/qrcodejs/jquery.min.js"></script>
     <script src="./dist/qrcodejs/qrcode.min.js"></script>
+    <script src="./dist/base64js.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,61 +54,64 @@
                 generateUrl() {
                     var dir = '/slate'; // Directory
                     // this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
-                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + this.b64EncodeUnicode(this.title) + '&c=' +this.b64EncodeUnicode(this.content);
+                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + this.Base64Encode(this.title) + '&c=' + this.Base64Encode(this.content);
                     return this.url;
                     this.isGenerated = true;
                 },
-                b64EncodeUnicode(str) {
-                    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-                        return String.fromCharCode(parseInt(p1, 16))
-                    }))
+                Base64Encode(str, encoding = 'utf-8') {
+                var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);
+                return base64js.fromByteArray(bytes);
+                },
+                Base64Decode(str, encoding = 'utf-8') {
+                var bytes = base64js.toByteArray(str);
+                return new (TextDecoder || TextDecoderLite)(encoding).decode(bytes);
                 },
                 onCopy: function (e) {
-                    // alert('You just copied: ' + e.text)
-                    this.copyMessage = "URL COPIED TO CLIPBOARD";
-                    this.copySuccess = true;
-                    setTimeout(() => {
-                        this.copyMessage = "COPY URL";
-                        this.copySuccess = false;
-                    }, 2000);
-                },
-                onError: function (e) {
-                    this.copyError = true;
-                    this.copyMessage = "ERROR GENERATING URL"
-                    setTimeout(() => {
-                        this.copyMessage = "COPY URL";
-                        this.copyError = false;
-                    }, 2000);
-                },
-                generateQr() {
-                    if (this.qrGenerated) {
-                        qrcode.clear(); // clear the code.
-                        qrcode.makeCode(this.generateUrl()); // make another code.
-                        this.qrMessage = "QR GENERATED SUCCESSFULLY";
-                    } else {
-                        qrcode = new QRCode(document.getElementById("qrcode"), {
-                            text: this.generateUrl(),
-                            width: 128,
-                            height: 128,
-                            colorDark: "#000000",
-                            colorLight: "#ffffff",
-                            correctLevel: QRCode.CorrectLevel.H
-                        });
-                        this.qrGenerated = true;
-                        this.qrMessage = "QR GENERATED SUCCESSFULLY";
-                    }
-                }
+                // alert('You just copied: ' + e.text)
+                this.copyMessage = "URL COPIED TO CLIPBOARD";
+                this.copySuccess = true;
+                setTimeout(() => {
+                    this.copyMessage = "COPY URL";
+                    this.copySuccess = false;
+                }, 2000);
             },
-            watch: {
-                title: function () {
-                    this.qrMessage = 'UPDATE QR';
-                    this.copyMessage = 'UPDATE URL';
-                },
-                content: function () {
-                    this.qrMessage = 'UPDATE QR';
-                    this.copyMessage = 'UPDATE URL';
+            onError: function (e) {
+                this.copyError = true;
+                this.copyMessage = "ERROR GENERATING URL"
+                setTimeout(() => {
+                    this.copyMessage = "COPY URL";
+                    this.copyError = false;
+                }, 2000);
+            },
+            generateQr() {
+                if(this.qrGenerated) {
+                    qrcode.clear(); // clear the code.
+                    qrcode.makeCode(this.generateUrl()); // make another code.
+                    this.qrMessage = "QR GENERATED SUCCESSFULLY";
+                } else {
+                    qrcode = new QRCode(document.getElementById("qrcode"), {
+                        text: this.generateUrl(),
+                        width: 128,
+                        height: 128,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                    this.qrGenerated = true;
+                    this.qrMessage = "QR GENERATED SUCCESSFULLY";
                 }
             }
+            },
+        watch: {
+            title: function () {
+                this.qrMessage = 'UPDATE QR';
+                this.copyMessage = 'UPDATE URL';
+            },
+            content: function () {
+                this.qrMessage = 'UPDATE QR';
+                this.copyMessage = 'UPDATE URL';
+            }
+        }
 
         });
     </script>

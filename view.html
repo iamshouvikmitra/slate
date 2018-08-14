@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="./icon.png" />
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="./dist/base64js.min.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,12 @@
     <!-- <iframe id="content" frameborder="0">hello</iframe> -->
 
     <script>
-        document.getElementById('title').innerText = b64DecodeUnicode(getParameterByName('t'));
-        document.getElementById('content').innerText = b64DecodeUnicode(getParameterByName('c'));
+        document.getElementById('title').innerHTML = Base64Decode(getParameterByName('t'));
+        document.getElementById('content').innerHTML = Base64Decode(getParameterByName('c'));
 
-        function b64DecodeUnicode(str) {
-            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            }).join(''))
+        function Base64Decode(str, encoding = 'utf-8') {
+            var bytes = base64js.toByteArray(str);
+            return new (TextDecoder || TextDecoderLite)(encoding).decode(bytes);
         }
     </script>
 </body>
