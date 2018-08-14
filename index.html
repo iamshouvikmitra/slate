@@ -24,7 +24,9 @@
             <textarea style="width:80%;" rows="20" v-model="content" id="contentInput" placeholder="Write something you want to share ..."></textarea>
             <br>
             <button v-clipboard:copy="generateUrl()" v-clipboard:success="onCopy" v-clipboard:error="onError" v-bind:class="{copySuccess: copySuccess}">{{copyMessage}}</button>
-            <button @click="generateQr()">{{ qrMessage}}</button><br><br>
+            <button @click="generateQr()">{{ qrMessage}}</button>
+            <br>
+            <br>
             <div id="qrcode"></div>
             <br>
         </center>
@@ -51,9 +53,14 @@
                 generateUrl() {
                     var dir = '/slate'; // Directory
                     // this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
-                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content); 
+                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + this.b64EncodeUnicode(this.title) + '&c=' +this.b64EncodeUnicode(this.content);
                     return this.url;
                     this.isGenerated = true;
+                },
+                b64EncodeUnicode(str) {
+                    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+                        return String.fromCharCode(parseInt(p1, 16))
+                    }))
                 },
                 onCopy: function (e) {
                     // alert('You just copied: ' + e.text)
@@ -92,11 +99,11 @@
                 }
             },
             watch: {
-                title: function(){
+                title: function () {
                     this.qrMessage = 'UPDATE QR';
                     this.copyMessage = 'UPDATE URL';
                 },
-                content: function(){
+                content: function () {
                     this.qrMessage = 'UPDATE QR';
                     this.copyMessage = 'UPDATE URL';
                 }

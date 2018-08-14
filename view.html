@@ -16,16 +16,21 @@
         <!-- To be populated by user input -->
     </div>
 
-    <p id="content" style="white-space: pre-line;"> 
+    <p id="content" style="white-space: pre-line;">
         <!-- To be populated by user input -->
     </p>
 
     <!-- <iframe id="content" frameborder="0">hello</iframe> -->
 
     <script>
-        document.getElementById('title').innerText= window.atob(getParameterByName('t'));
-        document.getElementById('content').innerText = window.atob(getParameterByName('c'));
- 
+        document.getElementById('title').innerText = b64DecodeUnicode(getParameterByName('t'));
+        document.getElementById('content').innerText = b64DecodeUnicode(getParameterByName('c'));
+
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            }).join(''))
+        }
     </script>
 </body>
 
