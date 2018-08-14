@@ -2,8 +2,8 @@
 # Slate  📝
 Slate Notes takes html (or other data), compresses it into a URL fragment, and provides a link that can be shared. When it is opened, it renders that data on the receiver’s side. Its live [here](http://iamshouvikmitra.github.io/slate).
 
-#About
-Slate Notes are contained entirely within their own link. (Including this one!) This means they're...
+# About
+Slate Notes are contained entirely within their own link. (Including this one!) This means they're... <br>
 
 💼 Portable - you don't need a server to host them <br>
 👁 Private - nothing is sent to–or stored on–this server <br>  
@@ -14,19 +14,19 @@ Slate Notes can hold about as much as a printed page, and there is a lot you can
 🐦 Bypass a 140 280 char limit <br>
 🎨 Express yourself in ascii <br>
 
-##Hosting
-One simple way to host is to forward a domain. Just paste your slate's url in the redirect.
+## Hosting
+One simple way to host is to forward a domain. Just paste your slate's url in the redirect.<br>
 
 ### Contributions
-Feel free to open a pull request adding your website or removing something thats down.
-
-I'm also not including websites that have advertising, or any real ulterior motives.
+Feel free to open a pull request adding your website or removing something thats down. <br>
+<br>
+I'm also not including websites that have advertising, or any real ulterior motives. <br>
 
 ### Screenshot.
 ![Nothing Special, but here it is.](https://i.imgur.com/VO1hF1r.png "Home")
 
 ### License
-Slate Notes is covered by the MIT License.
+Slate Notes is covered by the MIT License. <br>
 Copyright (C) 2018 ~ [Shouvik Mitra](http://iamshouvikmitra.github.io) ~ work.shouvikmitra@gmail.com
 
 
