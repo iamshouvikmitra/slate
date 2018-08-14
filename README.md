@@ -6,7 +6,7 @@ Slate Notes takes html (or other data), compresses it into a URL fragment, and p
 Slate Notes are contained entirely within their own link. (Including this one!) This means they're... <br>
 
 💼 Portable - you don't need a server to host them <br>
-👁 Private - nothing is sent to–or stored on–this server <br>  
+👁 Private - nothing is sent to–or stored on–this server 
 🎁 Easy to share as a link or QR code <br>
 
 Slate Notes can hold about as much as a printed page, and there is a lot you can do with that: <br>
