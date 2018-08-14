@@ -8,6 +8,7 @@ Slate Notes are contained entirely within their own link. (Including this one!) 
 💼 Portable - you don't need a server to host them <br>
 👁 Private - nothing is sent to–or stored on–this server <br>  
 🎁 Easy to share as a link or QR code <br>
+
 Slate Notes can hold about as much as a printed page, and there is a lot you can do with that: <br>
 ✒️ Compose poetry <br>
 🛠 Create an app <br>
