@@ -5,14 +5,14 @@ Slate Notes takes html (or other data), compresses it into a URL fragment, and p
 #About
 Slate Notes are contained entirely within their own link. (Including this one!) This means they're...
 
-💼 Portable - you don't need a server to host them 
-👁 Private - nothing is sent to–or stored on–this server 
-🎁 Easy to share as a link or QR code
-Slate Notes can hold about as much as a printed page, and there is a lot you can do with that:
-✒️ Compose poetry
-🛠 Create an app
-🐦 Bypass a 140 280 char limit
-🎨 Express yourself in ascii
+💼 Portable - you don't need a server to host them <br>
+👁 Private - nothing is sent to–or stored on–this server <br>  
+🎁 Easy to share as a link or QR code <br>
+Slate Notes can hold about as much as a printed page, and there is a lot you can do with that: <br>
+✒️ Compose poetry <br>
+🛠 Create an app <br>
+🐦 Bypass a 140 280 char limit <br>
+🎨 Express yourself in ascii <br>
 
 ##Hosting
 One simple way to host is to forward a domain. Just paste your slate's url in the redirect.
@@ -26,7 +26,7 @@ I'm also not including websites that have advertising, or any real ulterior moti
 ![Nothing Special, but here it is.](https://i.imgur.com/VO1hF1r.png "Home")
 
 ### License
-I'm Feeling Lucky is covered by the MIT License.
+Slate Notes is covered by the MIT License.
 Copyright (C) 2018 ~ [Shouvik Mitra](http://iamshouvikmitra.github.io) ~ work.shouvikmitra@gmail.com
 
 
