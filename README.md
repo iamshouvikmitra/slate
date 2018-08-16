@@ -19,9 +19,7 @@ Slate Notes can hold about as much as a printed page, and there is a lot you can
 One simple way to host is to forward a domain. Just paste your slate's url in the redirect.<br>
 
 ### Contributions
-Feel free to open a pull request adding your website or removing something thats down. <br>
-<br>
-I'm also not including websites that have advertising, or any real ulterior motives. <br>
+Feel free to open a pull request adding your new features, resolving issues, cleaning code or making this readme super awesome 😎 <br>
 
 ### Screenshot.
 ![Nothing Special, but here it is.](https://i.imgur.com/VO1hF1r.png "Home")
