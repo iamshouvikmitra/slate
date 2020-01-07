@@ -52,7 +52,7 @@
             },
             methods: {
                 generateUrl() {
-                    var dir = '/slate'; // Directory
+                    var dir = ''; // Directory
                     // this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
                     this.url = window.location.hostname + dir + '/view.html?' + 't=' + this.Base64Encode(this.title) + '&c=' + this.Base64Encode(this.content);
                     return this.url;
