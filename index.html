@@ -22,8 +22,19 @@
                 <input id="title" placeholder="Untitled document" value="👋 Welcome to Slate - Share Text Without Servers!" />
             </div>
             <div class="header-right">
-                <button id="copyButton">Share URL</button>
-                <button id="qrButton">Get QR Code</button>
+                <button id="copyButton" class="desktop-only" title="Share URL">
+                    <span class="desktop-text">Share URL</span>
+                </button>
+                <button id="qrButton" class="desktop-only" title="QR Code">
+                    <span class="desktop-text">Get QR Code</span>
+                </button>
+                <button id="shareButton" class="mobile-only" title="Share">
+                    <span class="mobile-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
+                        </svg>
+                    </span>
+                </button>
             </div>
         </div>
         <div id="app">
@@ -73,7 +84,7 @@ Made with ❤️ by the community</textarea>
                 <span id="contentCounter">0/5000</span>
             </div>
             <div class="footer-content">
-                Made with &hearts; by Shouvik Mitra, 2018 - 2025
+                Made with &hearts; by Shouvik Mitra
             </div>
         </div>
     </div>
