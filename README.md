@@ -22,7 +22,7 @@ One simple way to host is to forward a domain. Just paste your slate's url in th
 Feel free to open a pull request adding your new features, resolving issues, cleaning code or making this readme super awesome 😎 <br>
 
 ### Screenshot.
-![Nothing Special, but here it is.](https://i.imgur.com/VO1hF1r.png "Home")
+![Nothing Special, but here it is.](https://i.imgur.com/n0eVpNf.png "Home")
 
 ### License
 Slate Notes is covered by the MIT License. <br>
