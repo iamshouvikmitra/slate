@@ -10,28 +10,73 @@
     <script src="./dist/qrcodejs/jquery.min.js"></script>
     <script src="./dist/qrcodejs/qrcode.min.js"></script>
     <script src="./dist/base64js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lzma@2.3.2/src/lzma_worker.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
-        <input style="border-style: dashed; padding-left: 10px;" id="title" placeholder="New Untitled Post" />
-        <br>
-        <center>
-            <textarea style="width:80%;" rows="20" id="contentInput" placeholder="Write something you want to share ..."></textarea>
-            <br>
-            <button id="copyButton">COPY URL</button>
-            <button id="qrButton">GENERATE QR</button>
-            <br>
-            <br>
-            <div id="qrcode"></div>
-            <br>
-        </center>
-    </div>
-    <footer id="footer">
-        Made with &hearts; by Shouvik Mitra, 2018 - 2025.
-    </footer>
+    <div class="container">
+        <div class="editor-header">
+            <div class="header-left">
+                <input id="title" placeholder="Untitled document" value="👋 Welcome to Slate - Share Text Without Servers!" />
+            </div>
+            <div class="header-right">
+                <button id="copyButton">Share URL</button>
+                <button id="qrButton">Get QR Code</button>
+            </div>
+        </div>
+        <div id="app">
+            <div class="input-group">
+                <textarea id="contentInput" placeholder="Type your content here...">Hey there! 🌟
 
+What's Slate? It's pretty cool:
+📝 Create and share text/notes instantly
+🔒 Everything stays in the URL - no servers involved!
+🎯 Perfect for quick sharing without signup/login
+
+How to use:
+1. Edit this title & content (yep, just start typing!)
+2. Click 'Share URL' to copy the link
+3. Or get a QR code to share on mobile
+4. That's it! Share away! 🚀
+
+Cool use cases:
+• Quick notes & announcements
+• Code snippets or configs
+• Meeting minutes
+• Temporary instructions
+• Anything text-based you want to share!
+
+Pro Tips:
+✨ The URL contains everything - no data is stored on servers
+🔄 Each edit updates the shareable URL
+📱 Works great on mobile too!
+
+Want to contribute? We're open source! 🎉
+🔗 https://github.com/iamshouvikmitra/slate
+
+Made with ❤️ by the community</textarea>
+            </div>
+        </div>
+        <div id="qr-popover" popover>
+            <div class="popover-header">
+                <h3>Scan QR Code</h3>
+                <button class="close-button" onclick="this.parentElement.parentElement.hidePopover()">&times;</button>
+            </div>
+            <div class="qr-container">
+                <div id="qrcode"></div>
+            </div>
+        </div>
+        <div class="editor-footer">
+            <div class="char-counter">
+                <span id="contentCounter">0/5000</span>
+            </div>
+            <div class="footer-content">
+                Made with &hearts; by Shouvik Mitra, 2018 - 2025
+            </div>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
