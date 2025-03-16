@@ -26,7 +26,7 @@ Feel free to open a pull request adding your new features, resolving issues, cle
 
 ### License
 Slate Notes is covered by the MIT License. <br>
-Copyright (C) 2018 ~ [Shouvik Mitra](http://iamshouvikmitra.github.io) ~ work.shouvikmitra@gmail.com
+Copyright (C) 2018 - 2025 ~ [Shouvik Mitra](http://iamshouvikmitra.github.io) ~ work.shouvikmitra@gmail.com
 
 
 ### Inspiration

@@ -8,29 +8,33 @@
     <title>Slate - Viewer!</title>
     <link rel="icon" type="image/png" href="./icon.png" />
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <script src="./dist/base64js.min.js"></script>
 </head>
 
 <body>
-    <div id="title">
-        <!-- To be populated by user input -->
-    </div>
-
-    <p id="content" style="white-space: pre-line;">
-        <!-- To be populated by user input -->
-    </p>
-
-    <!-- <iframe id="content" frameborder="0">hello</iframe> -->
+    <div id="title"></div>
+    <p id="content" style="white-space: pre-line;"></p>
 
     <script>
-        document.getElementById('title').innerHTML = Base64Decode(getParameterByName('t'));
-        document.getElementById('content').innerHTML = Base64Decode(getParameterByName('c'));
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
 
         function Base64Decode(str, encoding = 'utf-8') {
             var bytes = base64js.toByteArray(str);
             return new (TextDecoder || TextDecoderLite)(encoding).decode(bytes);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('title').innerHTML = Base64Decode(getParameterByName('t'));
+            document.getElementById('content').innerHTML = Base64Decode(getParameterByName('c'));
+        });
     </script>
 </body>
 

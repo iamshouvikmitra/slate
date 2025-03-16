@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="./icon.png" />
     <title>Slate : Create and share websites that are self contained without storing them on server</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="./dist/copyToClipboard.min.js"></script>
     <script src="./dist/qrcodejs/jquery.min.js"></script>
     <script src="./dist/qrcodejs/qrcode.min.js"></script>
@@ -17,15 +14,14 @@
 </head>
 
 <body>
-
     <div id="app">
-        <input style="border-style: dashed; padding-left: 10px;" v-model="title" id="title" placeholder="New Untitled Post" />
+        <input style="border-style: dashed; padding-left: 10px;" id="title" placeholder="New Untitled Post" />
         <br>
         <center>
-            <textarea style="width:80%;" rows="20" v-model="content" id="contentInput" placeholder="Write something you want to share ..."></textarea>
+            <textarea style="width:80%;" rows="20" id="contentInput" placeholder="Write something you want to share ..."></textarea>
             <br>
-            <button v-clipboard:copy="generateUrl()" v-clipboard:success="onCopy" v-clipboard:error="onError" v-bind:class="{copySuccess: copySuccess}">{{copyMessage}}</button>
-            <button @click="generateQr()">{{ qrMessage}}</button>
+            <button id="copyButton">COPY URL</button>
+            <button id="qrButton">GENERATE QR</button>
             <br>
             <br>
             <div id="qrcode"></div>
@@ -33,88 +29,9 @@
         </center>
     </div>
     <footer id="footer">
-        Made with &hearts; by Shouvik Mitra, 2018.
+        Made with &hearts; by Shouvik Mitra, 2018 - 2025.
     </footer>
 
-
-    <script>
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                title: '',
-                content: '',
-                url: '',
-                copyMessage: 'COPY URL',
-                copySuccess: false,
-                copyError: false,
-                qrMessage: 'GENERATE QR',
-                qrGenerated: false,
-            },
-            methods: {
-                generateUrl() {
-                    var dir = ''; // Directory
-                    // this.url = window.location.hostname + dir +':' + window.location.port + '/view.html?' + 't=' + window.btoa(this.title) + '&c=' + window.btoa(this.content);
-                    this.url = window.location.hostname + dir + '/view.html?' + 't=' + this.Base64Encode(this.title) + '&c=' + this.Base64Encode(this.content);
-                    return this.url;
-                    this.isGenerated = true;
-                },
-                Base64Encode(str, encoding = 'utf-8') {
-                var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);
-                return base64js.fromByteArray(bytes);
-                },
-                Base64Decode(str, encoding = 'utf-8') {
-                var bytes = base64js.toByteArray(str);
-                return new (TextDecoder || TextDecoderLite)(encoding).decode(bytes);
-                },
-                onCopy: function (e) {
-                // alert('You just copied: ' + e.text)
-                this.copyMessage = "URL COPIED TO CLIPBOARD";
-                this.copySuccess = true;
-                setTimeout(() => {
-                    this.copyMessage = "COPY URL";
-                    this.copySuccess = false;
-                }, 2000);
-            },
-            onError: function (e) {
-                this.copyError = true;
-                this.copyMessage = "ERROR GENERATING URL"
-                setTimeout(() => {
-                    this.copyMessage = "COPY URL";
-                    this.copyError = false;
-                }, 2000);
-            },
-            generateQr() {
-                if(this.qrGenerated) {
-                    qrcode.clear(); // clear the code.
-                    qrcode.makeCode(this.generateUrl()); // make another code.
-                    this.qrMessage = "QR GENERATED SUCCESSFULLY";
-                } else {
-                    qrcode = new QRCode(document.getElementById("qrcode"), {
-                        text: this.generateUrl(),
-                        width: 128,
-                        height: 128,
-                        colorDark: "#000000",
-                        colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.H
-                    });
-                    this.qrGenerated = true;
-                    this.qrMessage = "QR GENERATED SUCCESSFULLY";
-                }
-            }
-            },
-        watch: {
-            title: function () {
-                this.qrMessage = 'UPDATE QR';
-                this.copyMessage = 'UPDATE URL';
-            },
-            content: function () {
-                this.qrMessage = 'UPDATE QR';
-                this.copyMessage = 'UPDATE URL';
-            }
-        }
-
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
-
 </html>
