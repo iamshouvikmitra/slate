@@ -150,12 +150,13 @@ async function handleMobileShare() {
         const url = await generateUrl();
         // Copy to clipboard first
         await navigator.clipboard.writeText(url);
-        
+        const navigatorURL = "https://" + url
+
         if (navigator.share) {
             await navigator.share({
                 title: titleInput.value || 'Slate Document',
                 text: 'Check out this Slate document',
-                url: url
+                url: navigatorURL
             });
         } else {
             // Fallback for browsers without Web Share API
