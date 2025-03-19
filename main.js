@@ -300,10 +300,10 @@ async function createShortUrl() {
 
         const result = await response.json();
         
-        if (result && result.shorturl) {
+        if (result && result.short_url) {
             // Show the short URL input and update its value
             shortUrlContainer.style.display = 'flex';
-            shortUrlInput.value = result.shorturl;
+            shortUrlInput.value = result.short_url;
             shortUrlStatus.textContent = 'Short URL created successfully!';
             shortUrlStatus.style.color = 'var(--success-color)';
         } else {
