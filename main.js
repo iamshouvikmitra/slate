@@ -49,13 +49,13 @@ updateCounters();
 function generateUrl() {
     const title = titleInput.value;
     const content = contentInput.value;
-    const port = window.location.port ? ':' + window.location.port : '';
+
     
     return Promise.all([
         Base64Encode(title),
         Base64Encode(content)
     ]).then(([encodedTitle, encodedContent]) => {
-        return window.location.hostname + port + '/view.html?' + 't=' + encodedTitle + '&c=' + encodedContent;
+        return window.location.origin + '/view.html?' + 't=' + encodedTitle + '&c=' + encodedContent;
     });
 }
 
