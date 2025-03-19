@@ -22,19 +22,11 @@
                 <input id="title" placeholder="Untitled document" value="👋 Welcome to Slate - Share Text Without Servers!" />
             </div>
             <div class="header-right">
-                <button id="copyButton" class="desktop-only" title="Share URL">
-                    <span class="desktop-text">Share URL</span>
-                </button>
-                <button id="qrButton" class="desktop-only" title="QR Code">
-                    <span class="desktop-text">Get QR Code</span>
-                </button>
-                <button id="shareButton" class="mobile-only" title="Share">
-                    <span class="mobile-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
-                        </svg>
-                        <span>Share Link</span>
-                    </span>
+                <button id="shareButton" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
+                    </svg>
+                    <span>Share</span>
                 </button>
             </div>
         </div>
@@ -71,13 +63,38 @@ Want to contribute? We're open source! 🎉
 Made with ❤️ by the community</textarea>
             </div>
         </div>
-        <div id="qr-popover" popover>
+        <div id="share-popover" popover>
             <div class="popover-header">
-                <h3>Scan QR Code</h3>
+                <h3>Share Link</h3>
                 <button class="close-button" onclick="this.parentElement.parentElement.hidePopover()">&times;</button>
             </div>
-            <div class="qr-container">
-                <div id="qrcode"></div>
+            <div class="share-content">
+                <div class="url-container">
+                    <div class="input-with-button">
+                        <input id="shareUrlInput" type="text" readonly>
+                        <button id="copyLinkButton" title="Copy URL">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="shortenUrlButton" class="full-width-button">Create Short URL</button>
+                    <div class="input-with-button" id="shortUrlContainer" style="display: none;">
+                        <input id="shortUrlInput" type="text" readonly>
+                        <button id="copyShortUrlButton" title="Copy Short URL">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="shortUrlStatus" class="status-message"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="qr-container">
+                    <div id="qrcode"></div>
+                </div>
             </div>
         </div>
         <div class="editor-footer">

@@ -235,21 +235,84 @@ button svg {
     height: 100%;
 }
 
-#qr-popover {
+#share-popover {
     padding: 20px;
     border-radius: 8px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: 1px solid #e0e0e0;
-    width: 300px;
+    background: var(--surface-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    width: 400px;
+    max-width: 90vw;
     position: fixed;
     inset: 0;
     margin: auto;
     height: fit-content;
 }
 
-#qr-popover::backdrop {
+#share-popover::backdrop {
     background: rgba(0,0,0,0.5);
+}
+
+.share-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.url-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-with-button {
+    display: flex;
+    width: 100%;
+    height: 36px;
+}
+
+.input-with-button input {
+    flex: 1;
+    padding: 0 10px;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 14px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.input-with-button button {
+    border-radius: 0 4px 4px 0;
+    padding: 0 10px;
+    min-width: 36px;
+}
+
+.full-width-button {
+    width: 100%;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 5px 0;
+}
+
+.qr-container h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.status-message {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+    margin-top: 5px;
+    text-align: center;
+    min-height: 18px;
 }
 
 .popover-header {
@@ -347,6 +410,17 @@ button svg {
     display: none;
 }
 
+/* Share button */
+#shareButton {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#shareButton svg {
+    margin-right: 2px;
+}
+
 /* Theme Switcher */
 .theme-switch {
     display: flex;
@@ -424,5 +498,9 @@ button svg {
     button {
         padding: 8px;
         min-width: 36px;
+    }
+    
+    #shareButton span {
+        display: none;
     }
 }
