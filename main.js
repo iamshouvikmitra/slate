@@ -10,6 +10,9 @@ const titleCounter = document.getElementById('titleCounter');
 const contentCounter = document.getElementById('contentCounter');
 const headerTitle = document.querySelector('.editor-header h1');
 const shareButton = document.getElementById('shareButton');
+const themeButton = document.getElementById('themeButton');
+const lightIcon = document.querySelector('.light-icon');
+const darkIcon = document.querySelector('.dark-icon');
 
 // Add max lengths
 const MAX_TITLE_LENGTH = 100;
@@ -34,6 +37,32 @@ function validateTitle() {
     return true;
 }
 
+// Theme functions
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcons(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons(newTheme);
+}
+
+function updateThemeIcons(theme) {
+    if (theme === 'dark') {
+        lightIcon.style.display = 'none';
+        darkIcon.style.display = 'block';
+    } else {
+        lightIcon.style.display = 'block';
+        darkIcon.style.display = 'none';
+    }
+}
+
 // Event Listeners
 titleInput.addEventListener('input', handleInputChange);
 contentInput.addEventListener('input', handleInputChange);
@@ -42,9 +71,11 @@ qrButton.addEventListener('click', generateQr);
 titleInput.addEventListener('input', updateCounters);
 contentInput.addEventListener('input', updateCounters);
 shareButton.addEventListener('click', handleMobileShare);
+themeButton.addEventListener('click', toggleTheme);
 
-// Initialize counters
+// Initialize
 updateCounters();
+initTheme();
 
 function generateUrl() {
     const title = titleInput.value;

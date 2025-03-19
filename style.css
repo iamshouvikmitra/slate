@@ -1,13 +1,41 @@
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --surface-color: white;
+    --border-color: #e0e0e0;
+    --primary-color: #2b79ff;
+    --primary-hover: #1967d2;
+    --success-color: #34a853;
+    --error-color: #ea4335;
+    --shadow-color: rgba(0,0,0,0.12);
+}
+
+[data-theme="dark"] {
+    --bg-color: #202124;
+    --text-color: #e8eaed;
+    --secondary-text-color: #9aa0a6;
+    --surface-color: #292a2d;
+    --border-color: #5f6368;
+    --primary-color: #8ab4f8;
+    --primary-hover: #669df6;
+    --success-color: #81c995;
+    --error-color: #f28b82;
+    --shadow-color: rgba(0,0,0,0.3);
+}
+
 body {
     font-family: 'Google Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
-    background-color: #f8f9fa;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #title, .view-title {
     border: none;
     font-size: 18px;
-    color: #444;
+    color: var(--text-color);
     font-weight: 500;
     width: 100%;
     padding: 0;
@@ -38,12 +66,13 @@ body {
     padding: 20px 0;
     font-size: 15px;
     line-height: 1.5;
-    color: #333;
+    color: var(--text-color);
     resize: none;
     font-family: 'Google Sans', sans-serif;
     overflow-x: auto;
     max-width: 100%;
     box-sizing: border-box;
+    background-color: transparent;
 }
 
 #contentInput:focus {
@@ -62,7 +91,7 @@ body {
 }
 
 button {
-    background-color: #2b79ff;
+    background-color: var(--primary-color);
     color: white;
     padding: 8px 16px;
     border-radius: 4px;
@@ -73,8 +102,8 @@ button {
 }
 
 button:hover {
-    background-color: #1967d2;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    background-color: var(--primary-hover);
+    box-shadow: 0 1px 2px var(--shadow-color);
     transform: none;
 }
 
@@ -83,11 +112,11 @@ button svg {
 }
 
 .copySuccess {
-    background-color: #34a853;
+    background-color: var(--success-color);
 }
 
-copyError {
-    background-color: #ea4335;
+.copyError {
+    background-color: var(--error-color);
 }
 
 #footer {
@@ -97,9 +126,9 @@ copyError {
 .container {
     max-width: 850px;
     margin: 0 auto;
-    background: white;
+    background: var(--surface-color);
     min-height: 100vh;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    box-shadow: 0 1px 3px var(--shadow-color);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -119,9 +148,9 @@ copyError {
 }
 
 .editor-header {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-color);
     padding: 8px 10px; /* Reduce padding */
-    background: white;
+    background: var(--surface-color);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -142,7 +171,7 @@ copyError {
 
 .editor-header h1 {
     font-size: 18px;
-    color: #444;
+    color: var(--text-color);
     font-weight: 500;
     margin: 0;
     white-space: nowrap;
@@ -176,7 +205,7 @@ copyError {
 }
 
 .char-counter {
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 13px;
     text-align: right;
     position: absolute;
@@ -251,9 +280,9 @@ copyError {
 }
 
 .editor-footer {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border-color);
     padding: 8px 20px;
-    background: white;
+    background: var(--surface-color);
     margin-top: auto;
     display: flex;
     justify-content: space-between;
@@ -267,8 +296,11 @@ copyError {
 
 .editor-footer .footer-content {
     font-size: 13px;
-    color: #666;
+    color: var(--secondary-text-color);
     font-family: 'Google Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Viewer Styles */
@@ -295,11 +327,11 @@ copyError {
     font-family: 'Google Sans', sans-serif;
     font-size: 15px;
     line-height: 1.5;
-    color: #333;
+    color: var(--text-color);
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    padding: 12px 0;  Remove horizontal padding
+    padding: 12px 0;  /* Remove horizontal padding */
     max-width: 100%;
     font-weight: 700;
     box-sizing: border-box;
@@ -313,6 +345,32 @@ copyError {
 
 .mobile-only {
     display: none;
+}
+
+/* Theme Switcher */
+.theme-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    min-width: 24px;
+    background: transparent;
+    color: var(--secondary-text-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.theme-switch:hover {
+    background-color: transparent;
+    color: var(--text-color);
+    box-shadow: none;
+}
+
+.theme-switch svg {
+    width: 18px;
+    height: 18px;
 }
 
 /* Mobile Responsive Styles */
