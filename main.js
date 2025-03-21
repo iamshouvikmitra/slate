@@ -264,7 +264,7 @@ function updateQrColors() {
 
 // This function is replaced by the unified handleShare() function above
 
-// Function to create short URL using the spoome service
+// Function to create short URL using the TinyURL service
 async function createShortUrl() {
     try {
         // Get the long URL
@@ -279,31 +279,23 @@ async function createShortUrl() {
         shortenUrlButton.textContent = 'Creating...';
         shortUrlStatus.textContent = 'Creating short URL...';
 
-        // Create URL shortener request
-        const url = 'https://spoo.me/';
-        const data = new URLSearchParams();
-        data.append('url', longUrl);
+        // Create URL shortener request using TinyURL's API
+        const tinyUrlApi = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`;
         
-        // We'll use fetch instead of XMLHttpRequest
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Accept': 'application/json'
-            },
-            body: data
-        });
+        // Make a simple GET request to TinyURL API
+        const response = await fetch(tinyUrlApi);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const result = await response.json();
+        // TinyURL returns the shortened URL as plain text
+        const shortUrl = await response.text();
         
-        if (result && result.short_url) {
+        if (shortUrl) {
             // Show the short URL input and update its value
             shortUrlContainer.style.display = 'flex';
-            shortUrlInput.value = result.short_url;
+            shortUrlInput.value = shortUrl;
             shortUrlStatus.textContent = 'Short URL created successfully!';
             shortUrlStatus.style.color = 'var(--success-color)';
         } else {
